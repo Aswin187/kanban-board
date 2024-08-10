@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -37,6 +37,7 @@ interface AddModalProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handleAddTask: (taskData: CardType) => void;
   column: string;
+  initialTaskData?: CardType;
 }
 
 const AddModal = ({
@@ -45,8 +46,9 @@ const AddModal = ({
   setOpen,
   handleAddTask,
   column,
+  initialTaskData,
 }: AddModalProps) => {
-  const initialTaskData: CardType = {
+  const initialData = initialTaskData || {
     id: uuidv4(),
     title: "",
     description: "",
@@ -56,9 +58,15 @@ const AddModal = ({
     tag: "",
   };
 
-  const [taskData, setTaskData] = useState(initialTaskData);
+  const [taskData, setTaskData] = useState(initialData);
   const [isAssigneeValid, setIsAssigneeValid] = useState(true);
   const [isTagValid, setIsTagValid] = useState(true);
+
+  useEffect(() => {
+    if (initialTaskData) {
+      setTaskData(initialTaskData);
+    }
+  }, [initialTaskData]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -78,7 +86,7 @@ const AddModal = ({
   const closeModal = () => {
     setOpen(false);
     onClose();
-    setTaskData({ ...initialTaskData, column }); // Reset taskData with column
+    setTaskData({ ...initialData, column }); // Reset taskData with column
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -101,9 +109,11 @@ const AddModal = ({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add Task</DialogTitle>
+          <DialogTitle>
+            {initialTaskData ? "Edit Task" : "Add Task"}
+          </DialogTitle>
           <DialogDescription>
-            Enter the details of the new task below.
+            Enter the details of the task below.
           </DialogDescription>
         </DialogHeader>
         <form>
@@ -137,7 +147,7 @@ const AddModal = ({
                   setTaskData((prevData) => ({ ...prevData, assignee: value }));
                   setIsAssigneeValid(true);
                 }}
-                defaultValue={taskData.assignee}
+                value={taskData.assignee}
               >
                 <SelectTrigger className=" bg-slate-100/50">
                   <SelectValue placeholder="Select assignee..." />
@@ -148,72 +158,74 @@ const AddModal = ({
                       key={participant.name + index}
                       value={participant.name}
                     >
-                      <div className="flex cursor-pointer items-center gap-2">
+                      <div className="flex items-center space-x-3">
                         <Avatar className="w-7 h-7">
                           <AvatarImage src={participant.image} />
                           <AvatarFallback>
                             {getInitials(participant.name)}
                           </AvatarFallback>
                         </Avatar>
-                        <p>{participant.name}</p>
+                        <p className="text-sm">{participant.name}</p>
                       </div>
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
+              {!isAssigneeValid && (
+                <p className="text-red-500 text-sm mt-1">
+                  Please select an assignee.
+                </p>
+              )}
+            </div>
+
+            <div className="flex flex-col space-y-2.5">
+              <Label htmlFor="name">Deadline</Label>
+              <DatePicker
+                selected={taskData.deadline}
+                onChange={handleDateChange}
+                className="bg-slate-100/50 w-full rounded-md border px-3 py-2.5 text-sm"
+                placeholderText="Select date..."
+              />
             </div>
 
             <div className="flex flex-col space-y-2.5">
               <Label htmlFor="framework">Tag</Label>
               <Select
+                required
                 onValueChange={(value) => {
                   setTaskData((prevData) => ({ ...prevData, tag: value }));
                   setIsTagValid(true);
                 }}
-                defaultValue={taskData.tag}
+                value={taskData.tag}
               >
-                <SelectTrigger className="bg-slate-100">
-                  <SelectValue placeholder="Select tag" />
+                <SelectTrigger className=" bg-slate-100/50">
+                  <SelectValue placeholder="Select tag..." />
                 </SelectTrigger>
                 <SelectContent>
                   {Tags.map((tag, index) => (
                     <SelectItem key={tag.name + index} value={tag.name}>
-                      <p>{tag.name}</p>
+                      <div className="flex items-center space-x-3">
+                        <div className="h-2.5 w-2.5 rounded-full bg-slate-600" />
+                        <p>{tag.name}</p>
+                      </div>
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
-            </div>
-
-            <div className="flex flex-col space-y-2.5">
-              <Label htmlFor="framework">Choose a deadline</Label>
-              <div className="w-full outline-none rounded-md bg-slate-100/50 border border-slate-300 text-sm flex items-center">
-                <Image
-                  src="/assets/calendar.svg"
-                  height={24}
-                  width={24}
-                  alt="calendar"
-                  className="ml-2"
-                />
-                <DatePicker
-                  className="w-full h-11 px-3 outline-none rounded-md bg-slate-100/50 border-none text-sm"
-                  placeholderText="Pick a deadline"
-                  selected={taskData.deadline}
-                  onChange={handleDateChange}
-                  dateFormat="dd-MMM-yyyy"
-                  wrapperClassName="w-full"
-                  required
-                />
-              </div>
+              {!isTagValid && (
+                <p className="text-red-500 text-sm mt-1">
+                  Please select a tag.
+                </p>
+              )}
             </div>
           </div>
         </form>
         <DialogFooter>
-          <Button onClick={onClose} variant="outline">
+          <Button onClick={closeModal} variant="outline">
             Cancel
           </Button>
           <Button onClick={handleSubmit} variant="default">
-            Save
+            {initialTaskData ? "Save" : "Add"}
           </Button>
         </DialogFooter>
       </DialogContent>

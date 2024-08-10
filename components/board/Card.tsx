@@ -13,8 +13,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { CardProps } from "@/types";
+import { CardProps, CardType } from "@/types";
 import DropIndicator from "./DropIndicator";
+import AddModal from "../modals/AddCardModal";
 
 const Card: React.FC<CardProps> = ({
   title,
@@ -27,6 +28,7 @@ const Card: React.FC<CardProps> = ({
   setCards,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const handleMotionDragStart = (e: MouseEvent | TouchEvent | PointerEvent) => {
     handleDragStart(e as unknown as React.DragEvent, {
@@ -51,6 +53,13 @@ const Card: React.FC<CardProps> = ({
     setCards((prevCards) => prevCards.filter((card) => card.id !== id));
   };
 
+  const handleEdit = (updatedTask: CardType) => {
+    setCards((prevCards) =>
+      prevCards.map((card) => (card.id === updatedTask.id ? updatedTask : card))
+    );
+    setIsEditModalOpen(false);
+  };
+
   return (
     <>
       <DropIndicator beforeId={id} column={column} />
@@ -71,6 +80,9 @@ const Card: React.FC<CardProps> = ({
                 <BsThreeDots />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
+                <DropdownMenuItem onSelect={() => setIsEditModalOpen(true)}>
+                  Edit
+                </DropdownMenuItem>
                 <DropdownMenuItem onSelect={handleDelete}>
                   Delete
                 </DropdownMenuItem>
@@ -93,6 +105,24 @@ const Card: React.FC<CardProps> = ({
           )}
         </div>
       </motion.div>
+
+      {/* AddModal for editing the card */}
+      <AddModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        setOpen={setIsEditModalOpen}
+        handleAddTask={handleEdit}
+        column={column}
+        initialTaskData={{
+          id,
+          title,
+          description: "",
+          assignee,
+          deadline,
+          tag,
+          column,
+        }}
+      />
     </>
   );
 };

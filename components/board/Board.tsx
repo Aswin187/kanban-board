@@ -11,12 +11,12 @@ import AddSectionModal from "@/components/modals/AddSectionModal";
 import Column from "./Column";
 
 const Board = () => {
-  const [cards, setCards] = useState<CardType[]>(DEFAULT_CARDS);
+  const [cards, setCards] = useState<CardType[]>([...DEFAULT_CARDS]);
   const [columns, setColumns] = useState<string[]>([
-    "backlog",
-    "todo",
-    "doing",
-    "done",
+    "To Do",
+    "In Progress",
+    "Review",
+    "Review",
   ]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -26,7 +26,7 @@ const Board = () => {
   };
 
   return (
-    <div className="flex h-full w-full gap-8 overflow-scroll py-10 px-2">
+    <div className="flex h-full w-full gap-5 overflow-scroll py-10 px-2">
       {columns.map((column, index) => (
         <Column
           key={column}

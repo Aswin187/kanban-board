@@ -21,7 +21,7 @@ export const dateFormatter = (date: Date) => {
   const month = format(date, "MMM");
 
   if (isToday(date)) return { text: "Today", color: "text-black" };
-  if (isTomorrow(date)) return { text: "Tomorrow", color: "text-sky-600" };
+  if (isTomorrow(date)) return { text: "Tomorrow", color: "text-blue-500" };
   if (isYesterday(date)) return { text: "Yesterday", color: "text-red-500" };
   return { text: `${day} ${month}`, color: "text-gray-400" };
 };

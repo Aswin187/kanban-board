@@ -7,7 +7,7 @@ export const DEFAULT_CARDS = [
     deadline: new Date("2024-08-10"),
     assignee: "",
     tag: "Programming",
-    column: "backlog",
+    column: "To Do",
     color: "neutral",
   },
   {
@@ -17,7 +17,7 @@ export const DEFAULT_CARDS = [
     deadline: new Date("2024-08-15"),
     assignee: "",
     tag: "R&D",
-    column: "backlog",
+    column: "To Do",
     color: "neutral",
   },
   {
@@ -27,7 +27,7 @@ export const DEFAULT_CARDS = [
     deadline: new Date("2024-07-25"),
     assignee: "",
     tag: "Devops",
-    column: "backlog",
+    column: "To Do",
     color: "neutral",
   },
 
@@ -39,8 +39,8 @@ export const DEFAULT_CARDS = [
     deadline: new Date("2024-07-25"),
     assignee: "",
     tag: "Programming",
-    column: "todo",
-    color: "yellow",
+    column: "In Progress",
+    color: "neutral",
   },
   {
     id: "5",
@@ -49,8 +49,8 @@ export const DEFAULT_CARDS = [
     deadline: new Date("2024-07-25"),
     assignee: "",
     tag: "Programming",
-    column: "todo",
-    color: "yellow",
+    column: "In Progress",
+    color: "neutral",
   },
 
   // DOING
@@ -61,8 +61,8 @@ export const DEFAULT_CARDS = [
     deadline: new Date("2024-07-25"),
     assignee: "",
     tag: "Programming",
-    column: "doing",
-    color: "blue",
+    column: "Review",
+    color: "neutral",
   },
   {
     id: "7",
@@ -71,8 +71,8 @@ export const DEFAULT_CARDS = [
     deadline: new Date("2024-07-25"),
     assignee: "",
     tag: "Programming",
-    column: "doing",
-    color: "blue",
+    column: "Review",
+    color: "neutral",
   },
 
   // DONE
@@ -83,7 +83,7 @@ export const DEFAULT_CARDS = [
     deadline: new Date("2024-07-25"),
     assignee: "",
     tag: "Programming",
-    column: "done",
-    color: "emerald",
+    column: "Review",
+    color: "neutral",
   },
 ];
