@@ -26,7 +26,7 @@ const Board = () => {
   };
 
   return (
-    <div className="flex h-full gap-[30px] flex-wrap py-[22px] px-[30px]">
+    <div className="flex h-full gap-[30px] py-[22px] px-[30px] overflow-x-scroll !pb-5">
       {columns.map((column, index) => (
         <Column
           key={column}
