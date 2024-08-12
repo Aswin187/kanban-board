@@ -68,10 +68,10 @@ const AddSectionModal: React.FC<AddSectionModalProps> = ({
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent position="popper">
-                  <SelectItem value="next">Next.js</SelectItem>
-                  <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                  <SelectItem value="astro">Astro</SelectItem>
-                  <SelectItem value="nuxt">Nuxt.js</SelectItem>
+                  <SelectItem className="font-medium transition text-black text-[14px] cursor-pointer hover:!bg-[#F9F9F9]" value="next">Next.js</SelectItem>
+                  <SelectItem className="font-medium transition text-black text-[14px] cursor-pointer hover:!bg-[#F9F9F9]" value="sveltekit">SvelteKit</SelectItem>
+                  <SelectItem className="font-medium transition text-black text-[14px] cursor-pointer hover:!bg-[#F9F9F9]" value="astro">Astro</SelectItem>
+                  <SelectItem className="font-medium transition text-black text-[14px] cursor-pointer hover:!bg-[#F9F9F9]" value="nuxt">Nuxt.js</SelectItem>
                 </SelectContent>
               </Select>
             </div>

@@ -1,5 +1,5 @@
- "use client";
- 
+"use client";
+
 import React, { useState } from "react";
 import { IoAddOutline } from "react-icons/io5";
 import { BsThreeDots } from "react-icons/bs";
@@ -135,19 +135,19 @@ const Column: React.FC<ColumnProps> = ({ title, cards, column, setCards }) => {
   const headingClass = getColorClass(headingColor || "neutral");
 
   return (
-    <div className="w-[310px] shrink-0">
-      <div className="flex justify-between items-center p-3">
-        <div className="flex items-center gap-3">
-          <h3 className={`font-medium ${headingClass}`}>{title}</h3>
-          <span className="rounded text-sm text-neutral-400">
+    <div className="flex flex-col gap-4">
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <h3 className={`font-semibold text-[18px] text-black`}>{title}</h3>
+          <span className="rounded-full flex items-center justify-center text-[13px] font-medium text-black bg-gray-300 w-[22px] h-[22px]">
             {filteredCards.length}
           </span>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <Button
             variant="ghost"
-            className="text-gray-500 p-0 hover:bg-transparent"
+            className="text-gray-500 h-[20px] p-0 hover:bg-transparent"
           >
             <IoAddOutline size={20} />
           </Button>
@@ -156,7 +156,7 @@ const Column: React.FC<ColumnProps> = ({ title, cards, column, setCards }) => {
               <BsThreeDots />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>Remove section</DropdownMenuItem>
+              <DropdownMenuItem className="font-medium transition text-black text-[14px] cursor-pointer hover:!bg-[#F9F9F9]">Remove section</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -165,9 +165,8 @@ const Column: React.FC<ColumnProps> = ({ title, cards, column, setCards }) => {
         onDrop={handleDragEnd}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        className={`h-full w-[310px] p-3 rounded-xl transition-colors ${
-          active ? "bg-stone-200/40" : "bg-[#F9F9F9]/50"
-        }`}
+        className={`h-full w-[280px] overflow-y-auto max-h-[500px] py-2 px-2.5 flex flex-col gap-1.5 rounded-[12px] transition-colors ${active ? "bg-stone-200/40" : "bg-[#F9F9F9]"
+          }`}
       >
         {filteredCards.map((c) => (
           <Card

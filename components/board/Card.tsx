@@ -61,7 +61,7 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <>
+    <div>
       <DropIndicator beforeId={id} column={column} />
       <motion.div
         layout
@@ -70,7 +70,7 @@ const Card: React.FC<CardProps> = ({
         onDragStart={handleMotionDragStart}
         onMouseEnter={() => handleMouseHover(true)}
         onMouseLeave={() => handleMouseHover(false)}
-        className="flex flex-col gap-6 w-full bg-white rounded-xl border border-neutral-300 p-2 cursor-grab active:cursor-grabbing"
+        className="flex flex-col gap-4 w-full bg-white rounded-[12px] border-2 border-[#F5F6F8] py-4 px-3.5 cursor-grab active:cursor-grabbing"
       >
         <div className="flex items-start justify-between gap-3">
           <h1 className="leading-6">{title}</h1>
@@ -80,10 +80,10 @@ const Card: React.FC<CardProps> = ({
                 <BsThreeDots />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem onSelect={() => setIsEditModalOpen(true)}>
+                <DropdownMenuItem className="font-medium transition text-black text-[14px] cursor-pointer hover:!bg-[#F9F9F9]" onSelect={() => setIsEditModalOpen(true)}>
                   Edit
                 </DropdownMenuItem>
-                <DropdownMenuItem onSelect={handleDelete}>
+                <DropdownMenuItem className="font-medium transition text-black text-[14px] cursor-pointer hover:!bg-[#F9F9F9]" onSelect={handleDelete}>
                   Delete
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -91,15 +91,15 @@ const Card: React.FC<CardProps> = ({
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <div className="flex gap-2 items-center">
-            <Avatar className="w-7 h-7">
+          <div className="flex gap-3 items-center">
+            <Avatar className="w-[25px] h-[25px]">
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <p className={`text-sm font-sans ${dateColor}`}>{formattedDate}</p>
+            <p className={`text-[13px] font-medium font-sans ${dateColor}`}>{formattedDate}</p>
           </div>
           {tag && (
-            <div className="px-3 py-1 bg-slate-200/50 rounded-2xl">
+            <div className="px-2.5 py-1.5 bg-[#F9F9F9] h-[24px] flex justify-center items-center rounded-2xl text-[#969AA1]">
               <p className="text-xs">{tag}</p>
             </div>
           )}
@@ -123,7 +123,7 @@ const Card: React.FC<CardProps> = ({
           column,
         }}
       />
-    </>
+    </div>
   );
 };
 

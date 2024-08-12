@@ -14,7 +14,7 @@ export const DEFAULT_CARDS = [
     id: "2",
     title: "SOX compliance checklist",
     description: "Lorem ipsum dolor sit amet ..",
-    deadline: new Date("2024-08-15"),
+    deadline: new Date("2024-08-12"),
     assignee: "",
     tag: "R&D",
     column: "To Do",

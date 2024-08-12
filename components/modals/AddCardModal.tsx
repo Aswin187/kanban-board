@@ -157,6 +157,7 @@ const AddModal = ({
                     <SelectItem
                       key={participant.name + index}
                       value={participant.name}
+                      className="font-medium transition text-black text-[14px] cursor-pointer hover:!bg-[#F9F9F9]"
                     >
                       <div className="flex items-center space-x-3">
                         <Avatar className="w-7 h-7">
@@ -172,7 +173,7 @@ const AddModal = ({
                 </SelectContent>
               </Select>
               {!isAssigneeValid && (
-                <p className="text-red-500 text-sm mt-1">
+                <p className="text-[#E34141] text-sm mt-1">
                   Please select an assignee.
                 </p>
               )}
@@ -203,7 +204,7 @@ const AddModal = ({
                 </SelectTrigger>
                 <SelectContent>
                   {Tags.map((tag, index) => (
-                    <SelectItem key={tag.name + index} value={tag.name}>
+                    <SelectItem className="font-medium transition text-black text-[14px] cursor-pointer hover:!bg-[#F9F9F9]" key={tag.name + index} value={tag.name}>
                       <div className="flex items-center space-x-3">
                         <div className="h-2.5 w-2.5 rounded-full bg-slate-600" />
                         <p>{tag.name}</p>
@@ -213,7 +214,7 @@ const AddModal = ({
                 </SelectContent>
               </Select>
               {!isTagValid && (
-                <p className="text-red-500 text-sm mt-1">
+                <p className="text-[#E34141] text-sm mt-1">
                   Please select a tag.
                 </p>
               )}

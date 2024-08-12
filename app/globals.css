@@ -61,6 +61,7 @@
 
 @layer base {
   * {
+    font-family: 'Mono Sans', sans-serif !important;
     @apply border-border;
   }
   body {

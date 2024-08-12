@@ -10,14 +10,14 @@ interface HeaderButtonProps {
   icon: React.ComponentType<{ size: number }>;
   className?: string;
   variant?:
-    | "link"
-    | "default"
-    | "destructive"
-    | "outline"
-    | "secondary"
-    | "ghost"
-    | null
-    | undefined;
+  | "link"
+  | "default"
+  | "destructive"
+  | "outline"
+  | "secondary"
+  | "ghost"
+  | null
+  | undefined;
   colorClass?: string;
 }
 
@@ -28,7 +28,7 @@ const HeaderButton = ({
   colorClass,
 }: HeaderButtonProps) => {
   return (
-    <Button variant={variant} className={`h-12 w-12 rounded-lg ${className}`}>
+    <Button variant={variant} className={`h-[44px] w-[44px] rounded-[12px] ${className}`}>
       {colorClass ? (
         <span className={colorClass}>
           <Icon size={20} />
@@ -42,8 +42,8 @@ const HeaderButton = ({
 
 const Header = () => {
   return (
-    <div className="flex w-full justify-between items-center py-5 px-2">
-      <div className="flex items-center gap-8">
+    <div className="flex w-full justify-between flex-wrap gap-3 z-20 items-center p-[30px] sticky top-0 bg-white">
+      <div className="flex items-center gap-6">
         <HeaderButton
           icon={FiArrowLeft}
           colorClass="text-gray-400"
@@ -53,19 +53,19 @@ const Header = () => {
         <div className="flex gap-4 items-center">
           <HeaderButton icon={FaApple} />
 
-          <div>
-            <h2 className="text-xl font-semibold">Apple</h2>
-            <span className="text-gray-400 text-sm">5 boards • 24 members</span>
+          <div className="flex flex-col">
+            <h2 className="text-[20px] font-semibold">Apple</h2>
+            <span className="text-gray-400 text-[13px] font-medium">5 boards • 24 members</span>
           </div>
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
-        <div className="flex rounded-lg border border-dark-500 bg-dark-400 items-center">
+      <div className="flex items-center flex-wrap gap-4">
+        <div className="flex rounded-lg border-2 min-w-[256px] h-[44px] border-dark-500 bg-dark-400 items-center">
           <FiSearch size={24} className="ml-3 text-gray-400" />
           <Input
             placeholder="Search"
-            className="placeholder:text-gray-400 border-gray-400 h-12 focus-visible:ring-0 focus-visible:ring-offset-0 border-0"
+            className="placeholder:text-gray-400 border-gray-400 h-full focus-visible:ring-0 focus-visible:ring-offset-0 border-0"
           />
         </div>
         <HeaderButton

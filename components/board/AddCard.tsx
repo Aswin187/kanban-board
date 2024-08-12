@@ -20,7 +20,7 @@ const AddCard: React.FC<AddCardProps> = ({ column, setCards }) => {
       <motion.button
         layout
         onClick={() => setIsModalOpen(true)}
-        className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-black"
+        className="flex w-full items-center justify-center gap-1.5 px-3 py-4 text-[16px] font-medium transition text-[#A2AABC] hover:text-black"
       >
         <span>Add task</span>
         <FiPlus />

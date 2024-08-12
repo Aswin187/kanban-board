@@ -26,7 +26,7 @@ const Board = () => {
   };
 
   return (
-    <div className="flex h-full w-full gap-5 overflow-scroll py-10 px-2">
+    <div className="flex h-full gap-[30px] flex-wrap py-[22px] px-[30px]">
       {columns.map((column, index) => (
         <Column
           key={column}
@@ -36,14 +36,14 @@ const Board = () => {
           setCards={setCards}
         />
       ))}
-      <div className="px-2">
+      <div className="">
         <Button
           variant="link"
-          className="text-gray-400"
+          className="text-gray-400 h-auto py-1 px-2.5"
           onClick={() => setIsModalOpen(true)}
         >
           <IoAddOutline size={20} />
-          <span className="ml-3 font-bold">Add section</span>
+          <span className="ml-2 font-semibold text-[16px]">Add section</span>
         </Button>
       </div>
 
