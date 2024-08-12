@@ -22,8 +22,8 @@ const AddCard: React.FC<AddCardProps> = ({ column, setCards }) => {
         onClick={() => setIsModalOpen(true)}
         className="flex w-full items-center justify-center gap-1.5 px-3 py-4 text-[16px] font-medium transition text-[#A2AABC] hover:text-black"
       >
-        <span>Add task</span>
         <FiPlus />
+        <span>Add task</span>
       </motion.button>
 
       <AddModal
